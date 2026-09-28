@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financial Accounting – MCQ Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213d; --muted:#5b6478; --paper:#f6f8f7; --card:#ffffff;
+  --rule:#d5e2dc; --green:#1f6b57; --green-soft:#e3f1ec;
+  --red:#b3261e; --red-soft:#fce9e7; --amber:#8a5a00; --amber-soft:#fff3d6;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:'IBM Plex Sans',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  /* faint ledger ruling */
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--rule) 31px,var(--rule) 32px);
+  min-height:100vh; line-height:1.5; -webkit-user-select:none; user-select:none;
+}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px}
+h1,h2{font-family:'IBM Plex Serif',Georgia,serif;font-weight:600;margin:0}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:26px}
+.hidden{display:none!important}
+.brand{font-family:'IBM Plex Serif',serif;font-size:15px;color:var(--green);font-weight:600;margin-bottom:22px}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #7ab8a6;outline-offset:2px}
+.btn{background:var(--green);color:#fff;border:0;border-radius:8px;padding:12px 22px;font-weight:600}
+.btn:hover{background:#185545}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn.ghost:hover{background:var(--green-soft)}
+
+/* subject screen */
+.hero h1{font-size:34px;line-height:1.2;margin-bottom:8px}
+.hero p{color:var(--muted);margin:0 0 26px;max-width:52ch}
+.subject{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;
+  background:var(--card);border:2px solid var(--green);border-radius:10px;padding:20px 22px;color:var(--ink)
+}
+.subject:hover{background:var(--green-soft)}
+.subject strong{font-family:'IBM Plex Serif',serif;font-size:22px;display:block}
+.subject span{color:var(--muted);font-size:14px}
+.subject .go{font-weight:600;color:var(--green)}
+
+/* form */
+label{display:block;font-weight:500;margin:18px 0 6px}
+input[type=text]{
+  width:100%;padding:12px 14px;font:inherit;border:1px solid #b9c7c0;border-radius:8px;background:#fff;
+  -webkit-user-select:text;user-select:text
+}
+.rules{background:var(--amber-soft);border-left:4px solid #d9a21b;padding:12px 16px;border-radius:6px;margin:22px 0;font-size:14.5px;color:#4d3600}
+.rules ul{margin:6px 0 0;padding-left:20px}
+.err{color:var(--red);font-size:14px;margin-top:12px;min-height:20px}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px}
+
+/* exam */
+.bar{
+  position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap
+}
+.timer{font-family:'IBM Plex Serif',serif;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--red)}
+.meta{font-size:14px;color:var(--muted)}
+.strikes{font-size:13.5px;font-weight:600;color:var(--red);background:var(--red-soft);padding:4px 10px;border-radius:99px}
+.strikes.zero{color:var(--green);background:var(--green-soft)}
+.prog{height:6px;background:var(--green-soft);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.prog i{display:block;height:100%;background:var(--green);width:0;transition:width .25s}
+.qtext{font-family:'IBM Plex Serif',serif;font-size:20px;line-height:1.5;margin:0 0 20px}
+.opt{
+  display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:#fff;color:var(--ink);
+  border:1.5px solid #c5d3cc;border-radius:9px;padding:13px 16px;margin-bottom:10px
+}
+.opt:hover{border-color:var(--green)}
+.opt b{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid #9fb3aa;display:grid;place-items:center;font-size:13px}
+.opt.sel{border-color:var(--green);background:var(--green-soft)}
+.opt.sel b{background:var(--green);border-color:var(--green);color:#fff}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin-top:22px;padding-top:18px;border-top:1px solid var(--rule)}
+.palette button{height:38px;border-radius:7px;border:1px solid #c5d3cc;background:#fff;font-weight:500;color:var(--ink)}
+.palette button.done{background:var(--green-soft);border-color:var(--green)}
+.palette button.cur{outline:2.5px solid var(--ink);outline-offset:1px}
+
+/* modal */
+.overlay{position:fixed;inset:0;background:rgba(20,33,61,.72);display:grid;place-items:center;z-index:50;padding:18px}
+.modal{background:#fff;border-radius:12px;max-width:440px;width:100%;padding:26px;border-top:6px solid var(--red)}
+.modal h2{color:var(--red);font-size:22px;margin-bottom:10px}
+.modal p{margin:0 0 18px}
+
+/* result */
+.score{font-family:'IBM Plex Serif',serif;font-size:56px;font-weight:600;color:var(--green);line-height:1}
+table{width:100%;border-collapse:collapse;margin-top:20px}
+td{padding:10px 4px;border-bottom:1px solid var(--rule)}
+td:last-child{text-align:right;font-weight:600}
+.flag{margin-top:18px;background:var(--red-soft);color:var(--red);padding:10px 14px;border-radius:8px;font-weight:500}
+@media(max-width:520px){.hero h1{font-size:27px}.card{padding:18px}.qtext{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1. SUBJECT -->
+  <section id="sSubject">
+    <div class="brand">Online MCQ Test</div>
+    <div class="hero">
+      <h1>Choose your subject</h1>
+      <p>Select the subject you are appearing for. You will enter your details on the next screen.</p>
+    </div>
+    <button class="subject" id="pickSubject">
+      <div><strong>Financial Accounting</strong><span>25 questions · 15 minutes</span></div>
+      <span class="go">Select</span>
+    </button>
+  </section>
+
+  <!-- 2. DETAILS -->
+  <section id="sDetails" class="hidden">
+    <div class="brand">Financial Accounting</div>
+    <div class="card">
+      <h2>Enter your details</h2>
+      <label for="name">Full name</label>
+      <input type="text" id="name" autocomplete="off">
+      <label for="reg">Register number</label>
+      <input type="text" id="reg" autocomplete="off">
+      <div class="rules">
+        <strong>Before you begin</strong>
+        <ul>
+          <li>You have 15 minutes for 25 questions. The test submits itself when time runs out.</li>
+          <li>Do not switch tabs or windows. Each switch is recorded as suspected malpractice and deducts 10% of the total marks.</li>
+          <li>You can continue the test after a warning.</li>
+        </ul>
+      </div>
+      <div class="row">
+        <button class="btn" id="startBtn">Start exam</button>
+        <button class="btn ghost" id="backBtn">Back</button>
+      </div>
+      <div class="err" id="startErr" role="alert"></div>
+    </div>
+  </section>
+
+  <!-- 3. EXAM -->
+  <section id="sExam" class="hidden">
+    <div class="bar">
+      <div><div class="meta" id="who"></div><div class="meta" id="qcount"></div></div>
+      <span class="strikes zero" id="strikes">Tab switches: 0</span>
+      <div class="timer" id="timer" aria-live="off">15:00</div>
+    </div>
+    <div class="prog"><i id="prog"></i></div>
+    <div class="card">
+      <p class="qtext" id="qtext"></p>
+      <div id="opts"></div>
+      <div class="nav">
+        <button class="btn ghost" id="prev">Previous</button>
+        <button class="btn ghost" id="clear">Clear answer</button>
+        <button class="btn" id="next">Next</button>
+      </div>
+      <div class="palette" id="palette"></div>
+      <div class="row" style="margin-top:20px;justify-content:flex-end">
+        <button class="btn" id="submitBtn">Submit test</button>
+      </div>
+      <div class="err" id="subErr" role="alert"></div>
+    </div>
+  </section>
+
+  <!-- 4. RESULT -->
+  <section id="sResult" class="hidden">
+    <div class="brand">Financial Accounting</div>
+    <div class="card">
+      <h2>Test submitted</h2>
+      <p style="color:var(--muted);margin:6px 0 20px">Your response has been recorded.</p>
+      <div class="score" id="finalScore"></div>
+      <table id="resTable"></table>
+      <div class="flag hidden" id="resFlag"></div>
+    </div>
+  </section>
+</div>
+
+<!-- warning modal -->
+<div class="overlay hidden" id="warn" role="alertdialog" aria-modal="true">
+  <div class="modal">
+    <h2>Warning: tab switch detected</h2>
+    <p id="warnText"></p>
+    <button class="btn" id="warnOk">Continue exam</button>
+  </div>
+</div>
+
+<script>
+/* ============ CONFIGURATION ============ */
+const API_URL = 'https://script.google.com/macros/s/AKfycbxIh8k21hBtwAmhpB_8nVKgLOtoN6j-m7WoM6eAFo6hJT44T2JGOw_DMwI5Rnfc7yem/exec';
+const SUBJECT = 'Financial Accounting';
+const DURATION_SEC = 15 * 60;
+const PENALTY_PCT = 10;           // shown to students; the real deduction is set in Code.gs
+const STORE = 'fa_exam_state_v1';
+/* ======================================= */
+
+const $ = id => document.getElementById(id);
+const show = id => { ['sSubject','sDetails','sExam','sResult'].forEach(s => $(s).classList.toggle('hidden', s !== id)); window.scrollTo(0,0); };
+
+let S = null;        // {name, reg, questions[], answers{}, cur, endAt, switches}
+let timerId = null, lastSwitch = 0, submitting = false;
+
+async function api(payload){
+  const r = await fetch(API_URL, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},   // avoids CORS pre-flight
+    body: JSON.stringify(payload)
+  });
+  return r.json();
+}
+const save = () => localStorage.setItem(STORE, JSON.stringify(S));
+
+/* ---- screens 1 & 2 ---- */
+$('pickSubject').onclick = () => show('sDetails');
+$('backBtn').onclick = () => show('sSubject');
+
+$('startBtn').onclick = async () => {
+  const name = $('name').value.trim(), reg = $('reg').value.trim();
+  $('startErr').textContent = '';
+  if (!name || !reg){ $('startErr').textContent = 'Enter both your name and register number.'; return; }
+  if (API_URL.startsWith('PASTE')){ $('startErr').textContent = 'The site is not connected to the Google Sheet yet. Add the Web App URL in index.html.'; return; }
+  $('startBtn').disabled = true; $('startBtn').textContent = 'Loading questions…';
+  try{
+    const res = await api({action:'start', name, reg});
+    if (!res.ok) throw new Error(res.error);
+    S = { name, reg, questions:res.questions, answers:{}, cur:0, endAt:Date.now()+DURATION_SEC*1000, switches:0 };
+    save(); beginExam();
+  }catch(e){
+    $('startErr').textContent = e.message || 'Could not start. Check your internet connection and try again.';
+  }finally{
+    $('startBtn').disabled = false; $('startBtn').textContent = 'Start exam';
+  }
+};
+
+/* ---- exam ---- */
+function beginExam(){
+  show('sExam');
+  $('who').textContent = S.name + ' · ' + S.reg;
+  buildPalette(); render(); updateStrikes(); tick();
+  clearInterval(timerId); timerId = setInterval(tick, 500);
+}
+
+function buildPalette(){
+  $('palette').innerHTML = '';
+  S.questions.forEach((q,i) => {
+    const b = document.createElement('button');
+    b.textContent = i+1; b.setAttribute('aria-label','Go to question '+(i+1));
+    b.onclick = () => { S.cur = i; save(); render(); };
+    $('palette').appendChild(b);
+  });
+}
+
+function render(){
+  const q = S.questions[S.cur], n = S.questions.length;
+  $('qcount').textContent = 'Question ' + (S.cur+1) + ' of ' + n + ' · Answered ' + Object.keys(S.answers).length;
+  $('qtext').textContent = (S.cur+1) + '. ' + q.question;
+  $('opts').innerHTML = '';
+  ['A','B','C','D'].forEach((L,i) => {
+    const text = q.options[i]; if (!text) return;
+    const b = document.createElement('button');
+    b.className = 'opt' + (S.answers[q.id] === L ? ' sel' : '');
+    const badge = document.createElement('b'); badge.textContent = L;
+    const span = document.createElement('span'); span.textContent = text;
+    b.append(badge, span);
+    b.onclick = () => { S.answers[q.id] = L; save(); render(); };
+    $('opts').appendChild(b);
+  });
+  $('prev').disabled = S.cur === 0;
+  $('next').disabled = S.cur === n-1;
+  [...$('palette').children].forEach((b,i) => {
+    b.classList.toggle('done', S.answers[S.questions[i].id] !== undefined);
+    b.classList.toggle('cur', i === S.cur);
+  });
+  $('prog').style.width = (Object.keys(S.answers).length / n * 100) + '%';
+}
+$('prev').onclick = () => { if (S.cur>0){ S.cur--; save(); render(); } };
+$('next').onclick = () => { if (S.cur<S.questions.length-1){ S.cur++; save(); render(); } };
+$('clear').onclick = () => { delete S.answers[S.questions[S.cur].id]; save(); render(); };
+
+function tick(){
+  const left = Math.max(0, Math.round((S.endAt - Date.now())/1000));
+  $('timer').textContent = String(Math.floor(left/60)).padStart(2,'0') + ':' + String(left%60).padStart(2,'0');
+  $('timer').classList.toggle('low', left <= 60);
+  if (left <= 0){ clearInterval(timerId); submit(true); }
+}
+
+/* ---- malpractice detection ---- */
+function updateStrikes(){
+  const n = S ? S.switches : 0;
+  $('strikes').textContent = 'Tab switches: ' + n;
+  $('strikes').classList.toggle('zero', n === 0);
+}
+function onSwitch(){
+  if (!S || submitting || $('sExam').classList.contains('hidden')) return;
+  const now = Date.now();
+  if (now - lastSwitch < 1500) return;      // visibilitychange + blur fire together; count once
+  lastSwitch = now;
+  S.switches++; save(); updateStrikes();
+  api({action:'tab', name:S.name, reg:S.reg}).catch(()=>{});   // recorded in Google Sheet immediately
+  pendingWarn = true;
+}
+let pendingWarn = false;
+function showWarnIfNeeded(){
+  if (!pendingWarn || document.hidden) return;
+  pendingWarn = false;
+  $('warnText').textContent = 'You left the exam window. This is recorded as suspected malpractice and ' + PENALTY_PCT +
+    '% of the total marks is deducted. Tab switches so far: ' + S.switches + ' (total deduction ' + (S.switches*PENALTY_PCT) + '%). You may continue the exam.';
+  $('warn').classList.remove('hidden'); $('warnOk').focus();
+}
+$('warnOk').onclick = () => $('warn').classList.add('hidden');
+document.addEventListener('visibilitychange', () => { if (document.hidden) onSwitch(); else showWarnIfNeeded(); });
+window.addEventListener('blur', onSwitch);
+window.addEventListener('focus', showWarnIfNeeded);
+['copy','cut','paste','contextmenu'].forEach(ev => document.addEventListener(ev, e => {
+  if (!$('sExam').classList.contains('hidden')) e.preventDefault();
+}));
+window.addEventListener('beforeunload', e => { if (S && !submitting && !$('sExam').classList.contains('hidden')){ e.preventDefault(); e.returnValue=''; } });
+
+/* ---- submit ---- */
+$('submitBtn').onclick = () => {
+  const left = S.questions.length - Object.keys(S.answers).length;
+  const msg = left ? 'You have ' + left + ' unanswered question' + (left>1?'s':'') + '. Submit anyway?' : 'Submit your test now?';
+  if (confirm(msg)) submit(false);
+};
+
+async function submit(auto){
+  if (submitting) return; submitting = true;
+  $('subErr').textContent = 'Submitting…'; $('submitBtn').disabled = true;
+  try{
+    const res = await api({
+      action:'submit', name:S.name, reg:S.reg, answers:S.answers,
+      questionIds:S.questions.map(q=>q.id), switches:S.switches, auto:!!auto
+    });
+    if (!res.ok) throw new Error(res.error);
+    clearInterval(timerId); localStorage.removeItem(STORE);
+    showResult(res.result);
+  }catch(e){
+    submitting = false; $('submitBtn').disabled = false;
+    $('subErr').textContent = 'Could not submit: ' + (e.message||'network error') + '. Keep this page open and press Submit test again.';
+  }
+}
+
+function showResult(r){
+  show('sResult');
+  $('finalScore').textContent = r.finalMarks + ' / ' + r.total;
+  const rows = [
+    ['Questions attempted', r.attempted], ['Correct answers', r.correct], ['Wrong answers', r.wrong],
+    ['Marks before penalty', r.raw], ['Tab switches', r.switches], ['Penalty deducted', r.penalty], ['Final marks', r.finalMarks]
+  ];
+  $('resTable').innerHTML = '';
+  rows.forEach(([k,v]) => { const tr = document.createElement('tr'); const a = document.createElement('td'); a.textContent = k; const b = document.createElement('td'); b.textContent = v; tr.append(a,b); $('resTable').appendChild(tr); });
+  if (r.malpractice){ $('resFlag').textContent = 'Marked as suspected malpractice because you switched tabs during the test.'; $('resFlag').classList.remove('hidden'); }
+}
+
+/* ---- resume after accidental refresh ---- */
+(function resume(){
+  try{
+    const raw = localStorage.getItem(STORE); if (!raw) return;
+    S = JSON.parse(raw);
+    if (S && S.questions && S.questions.length){ beginExam(); }
+  }catch(e){ localStorage.removeItem(STORE); }
+})();
+</script>
+</body>
+</html>
